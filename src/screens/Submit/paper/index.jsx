@@ -52,6 +52,7 @@ export default function Home(props) {
             </head>
             <Header></Header>
             <div className="main" >
+                <h1>here we add rules</h1>
             <h4 style={{color:"white",margin:10}}>Submit your Paper</h4>
                 <div>
                     {/* <h5>{props.title}</h5> */}
