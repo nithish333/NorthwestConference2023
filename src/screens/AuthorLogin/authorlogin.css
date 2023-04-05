@@ -17,3 +17,12 @@
     display: flex;
     justify-content: space-evenly;
 }
+.greenButton{
+    width:350px;
+    background-color:#006747;
+  
+    border:none;
+    padding: 10px 0;
+    margin-top: 20px;
+    color: #fff;
+}
