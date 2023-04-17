@@ -2,31 +2,37 @@ import React from 'react'
 import Header from '../../components/Header/header'
 import ProfileImage from "../../assets/profileImage.jpg"
 import "../UserLanding/UserLanding.css"
-import { Link } from 'react-router-dom'
+import { Link, useLocation,useNavigate } from 'react-router-dom'
 import AuthorOption from '../../components/AuthorOption/AuthorOption'
 import newPaper from "../../assets/newPaper.png"
 import paperStatus from "../../assets/paperStatus.png"
 import editPaper from "../../assets/editPaper.png"
 import knowMore from "../../assets/knowMore.jpg"
-const UserLanding = () => {
+const UserLanding = (Fuser) => {
+  const location = useLocation();
+  // console.log(location.state.name[1])
+  const user =location.state.name[1]
+  const {FirstName,LastName,Email,Aoi} =user ;
+  const navigate = useNavigate()
+  // console.log(FirstName);
   return (
-    <div style={{backgroundColor:"#F0F3F5",height:"100%"}}>
-      <Header/>
+    <div style={{ backgroundColor: "#F0F3F5", height: "100%" }}>
+      <Header />
       <div className="authorInfoContainer">
         <div className="authorInfoImage">
-            <img src={ProfileImage} className="authorImage" alt="Profile image"/>
+          <img src={ProfileImage} className="authorImage" alt="Profile image" />
         </div>
         <div className="authorInfo">
           <table>
             <tr>
               <td className='authorInfoHeading'>Name</td>
               <td>&nbsp;:&nbsp; </td>
-              <td>&nbsp;Nithish Kommineni</td>
+              <td>&nbsp;{FirstName+" "+LastName}</td>
             </tr>
             <tr>
               <td className='authorInfoHeading'>Email</td>
               <td>&nbsp;:&nbsp;</td>
-              <td>nithish.kommineni@gmail.com</td>
+              <td>{Email}</td>
             </tr>
             <tr>
               <td className='authorInfoHeading'>Mobile Number</td>
@@ -46,7 +52,7 @@ const UserLanding = () => {
             <tr>
               <td className='authorInfoHeading'>Areas of intrest</td>
               <td>&nbsp;:&nbsp;</td>
-              <td>Software engineering, Cloud computing, Block chain</td>
+              <td>{Aoi}</td>
             </tr>
           </table>
           <div className="editInfoContainer">
@@ -56,15 +62,15 @@ const UserLanding = () => {
       </div>
       <div className="authorOptionsContainer">
         {/* <div className="authorOptions1"> */}
-        <AuthorOption image={newPaper} title="Submit a new paper"/>
-        <AuthorOption image={paperStatus} title="Check your paper status"/>
+        <AuthorOption image={newPaper} title="Submit a new paper" />
+        <AuthorOption image={paperStatus} title="Check your paper status" />
         {/* </div> */}
         {/* <div className="authorOptions2"> */}
-        <AuthorOption image={editPaper} title="Edit/Update your submitted papers"/>
-        <AuthorOption title="Know more about paper submission" image={knowMore}/>
+        <AuthorOption image={editPaper} title="Edit/Update your submitted papers" />
+        <AuthorOption title="Know more about paper submission" image={knowMore} />
         {/* </div> */}
       </div>
-      
+
     </div>
   )
 }

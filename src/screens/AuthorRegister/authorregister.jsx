@@ -25,7 +25,7 @@ export const AuthorRegister = () => {
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData()
         // handle form submission
@@ -80,28 +80,10 @@ export const AuthorRegister = () => {
         }
         //   console.log(userData);
         if (firstName !== "" && lastName !== "" && email !== "" && confirmEmail !== "" && password !== "") {
-            var userData = { "FirstName": firstName, "LastName": lastName, "Email": email, "Password": password, "Aoi": interests }
-            formData.append('FirstName', userData.FirstName)
-            formData.append('LastName', userData.LastName)
-            formData.append('Email', userData.Email)
-            formData.append('Password', userData.Password)
-            formData.append('Aoi', userData.Aoi)
-            // console.log(formData.get('title'));
-            // axios.post('http://localhost:3001/', userData).then((response) => {
-            //     console.log('Came here');
-            //     console.log(response.status, response.data);
-            // }).catch(e => {
-            //     console.log(e);
-            // })
-            fetch("http://127.0.0.1:5000/", {
-                 method: 'POST', mode: 'no-cors', body: formData
-            }).then(data =>{console.log("Hi");navigate("/author/home")} ).catch(err => console.log(err))
+            await axios.post("http://127.0.0.1:5000/",{"Email":email,"Password":password,"FirstName":firstName,"LastName":lastName,"Aoi":interests})
+            navigate("/author/home")
         }
-
     };
-
-
-
 
     return (
         <>
